@@ -1,5 +1,5 @@
 window.addEventListener('DOMContentLoaded', () => {
-    fetch('../components/Navbar.html')
+    fetch('/components/Navbar.html')
         .then(res => res.text())
         .then(html => {
             document.getElementById('navbar').innerHTML = html;
@@ -8,7 +8,7 @@ window.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-    fetch('../components/Footer.html')
+    fetch('/components/Footer.html')
         .then(res => res.text())
         .then(html => document.getElementById('footer').innerHTML = html);
 });
