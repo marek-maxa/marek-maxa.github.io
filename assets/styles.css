@@ -142,53 +142,147 @@ button:hover {
     background-color: #3700b3;
 }
 
+html.lightmode,
 body.lightmode {
     background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
     color: #232526;
 }
+html.lightmode .navbar,
 body.lightmode .navbar {
     background: rgba(255,255,255,0.98);
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
+html.lightmode .navbar-title,
 body.lightmode .navbar-title {
     color: #6200ee;
 }
+html.lightmode .navbar-links a,
 body.lightmode .navbar-links a {
     color: #232526;
 }
+html.lightmode .navbar-links a:hover,
 body.lightmode .navbar-links a:hover {
     color: #6200ee;
     background: #ececec;
 }
+html.lightmode main,
 body.lightmode main {
     background: rgba(255,255,255,0.95);
     color: #232526;
 }
+html.lightmode footer,
 body.lightmode footer {
     background: #ececec;
     color: #888;
     border-top: 1px solid #ddd;
 }
+html.lightmode h1, 
+html.lightmode h2, 
+html.lightmode h3,
 body.lightmode h1, 
 body.lightmode h2, 
 body.lightmode h3 {
     color: #6200ee;
 }
+html.lightmode .social-links a,
 body.lightmode .social-links a {
     color: #6200ee;
 }
+html.lightmode .social-links a:hover,
 body.lightmode .social-links a:hover {
     color: #232526;
 }
 
-@media (max-width: 600px) {
-    .navbar-container, main {
-        padding: 1rem;
+@media (max-width: 768px) {
+    .navbar-container {
+        padding: 0.5rem 1rem;
+        flex-wrap: wrap;
     }
-    main {
-        margin: 80px 5px 20px 5px;
+    
+    .navbar-title {
+        font-size: 1.1rem;
     }
+    
     .navbar-links {
-        gap: 0.7rem;
+        gap: 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .navbar-links a {
+        padding: 6px 10px;
+    }
+    
+    main {
+        margin: 70px 10px 20px 10px;
+        padding: 1.5rem;
+        border-radius: 12px;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+    }
+    
+    h2 {
+        font-size: 1.4rem;
+    }
+    
+    h3 {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar-container {
+        padding: 0.5rem;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .navbar-title {
+        font-size: 1rem;
+    }
+    
+    .navbar-links {
+        gap: 0.8rem;
+        font-size: 0.85rem;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .navbar-links a {
+        padding: 4px 8px;
+    }
+    
+    main {
+        margin: 90px 5px 15px 5px;
+        padding: 1rem;
+        border-radius: 8px;
+    }
+    
+    h1 {
+        font-size: 1.6rem;
+        text-align: center;
+    }
+    
+    h2 {
+        font-size: 1.3rem;
+    }
+    
+    h3 {
+        font-size: 1.1rem;
+    }
+    
+    p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+    
+    .social-links {
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+    
+    .social-links a {
+        font-size: 1rem;
     }
 }
