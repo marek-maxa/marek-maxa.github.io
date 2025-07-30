@@ -16,10 +16,65 @@
     <link rel="icon" href="assets/venus.ico">
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <div id="navbar"></div>
-    <main>
-        <h1>Welcome!</h1>
-        <p>Here will be some introduction...</p>
+    <main id="main-content">
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="hero-greeting">Hi, I'm</span>
+                    <span class="hero-name">Marek Maxa</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Welcome to personal website! Here you can find information about me, my projects, and how to contact me.
+                </p>
+                <div class="hero-cta">
+                    <a href="/pages/about.html" class="cta-button primary">About Me</a>
+                    <a href="/pages/projects.html" class="cta-button secondary">View Projects</a>
+                </div>
+            </div>
+            <div class="hero-decoration">
+                <div class="floating-element element-1"></div>
+                <div class="floating-element element-2"></div>
+                <div class="floating-element element-3"></div>
+            </div>
+        </section>
+        
+        <section class="intro-section">
+            <h2>What I Do</h2>
+            <div class="intro-grid">
+                <div class="intro-card">
+                    <div class="intro-icon">📈</div>
+                    <h3>Finance</h3>
+                    <p>Studying financial mathematics at Charles University</p>
+                </div>
+                <div class="intro-card">
+                    <div class="intro-icon">👨‍💻</div>
+                    <h3>Programming & Data</h3>
+                    <p>Writing Python code, data analysis</p>
+                </div>
+                <div class="intro-card">
+                    <div class="intro-icon">🎸</div>
+                    <h3>Guitar & Hiking</h3>
+                    <p>Playing guitar and (hitch)hiking for fun</p>
+                </div>
+                <div class="intro-card">
+                    <div class="intro-icon">🧊</div>
+                    <h3>3D Printing</h3>
+                    <p>Exploring the world of 3D modeling and printing</p>
+                </div>
+                <div class="intro-card">
+                    <div class="intro-icon">🎲</div>
+                    <h3>Gaming & Friends</h3>
+                    <p>From PC games to board games, primarily as a social event</p>
+                </div>
+                <div class="intro-card">
+                    <div class="intro-icon">📚</div>
+                    <h3>Teaching & Learning</h3>
+                    <p>Tutoring younger students in physics, math, chemistry and Czech</p>
+                </div>
+            </div>
+        </section>
     </main>
     <div id="footer"></div>
     <script src="scripts/components.js"></script>
