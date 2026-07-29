@@ -3,79 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Personal website – Marek Maxa">
-    <meta name="keywords" content="Marek Maxa, personal website, contact, about me, projects">
-    <meta property="og:title" content="Marek Maxa – personal website">
-    <meta property="og:description" content="Marek Maxa's personal website showcasing projects, contact information, and more.">
+    <meta name="description" content="Marek Maxa builds analytical and software projects across academic and practical settings.">
+    <meta name="keywords" content="Marek Maxa, financial mathematics, software, projects, analytics">
+    <meta property="og:title" content="Marek Maxa">
+    <meta property="og:description" content="Personal site for academic and practical projects in mathematics, analytics, and software.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://marek-maxa.github.io/">
-    <meta property="og:image" content="https://marek-maxa.github.io/assets/og-image.png">
+    <meta property="og:image" content="https://marek-maxa.github.io/assets/og-image.jpg">
     <title>Marek Maxa</title>
     <script src="scripts/darkmode.js"></script>
+    <script src="scripts/projects-data.js"></script>
+    <script src="scripts/projects.js"></script>
     <link rel="stylesheet" href="assets/styles.css">
-    <link rel="icon" href="assets/venus.ico">
+    <link rel="icon" href="assets/venus.ico" type="image/x-icon">
 </head>
 <body>
-    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <a href="#main-content" class="skip-link">Skip to content</a>
     <div id="navbar"></div>
+
     <main id="main-content">
-        <section class="hero-section">
-            <div class="hero-content">
-                <h1 class="hero-title">
-                    <span class="hero-greeting">Hi, I'm</span>
-                    <span class="hero-name">Marek Maxa</span>
-                </h1>
-                <p class="hero-subtitle">
-                    Welcome to personal website! Here you can find information about me, my projects, and how to contact me.
-                </p>
-                <div class="hero-cta">
-                    <a href="/pages/about.html" class="cta-button primary">About Me</a>
-                    <a href="/pages/projects.html" class="cta-button secondary">View Projects</a>
+        <div class="page-shell content-shell stack">
+            <section class="intro" data-reveal>
+                <div>
+                    <p class="eyebrow">About</p>
+                    <h1>Marek Maxa</h1>
                 </div>
-            </div>
-            <div class="hero-decoration">
-                <div class="floating-element element-1"></div>
-                <div class="floating-element element-2"></div>
-                <div class="floating-element element-3"></div>
-            </div>
-        </section>
-        
-        <section class="intro-section">
-            <h2>What I Do</h2>
-            <div class="intro-grid">
-                <div class="intro-card">
-                    <div class="intro-icon">📈</div>
-                    <h3>Finance</h3>
-                    <p>Studying financial mathematics at Charles University</p>
+                <div class="intro-copy lead">
+                    <p>I'm currently pursuing a Master's degree in Financial Mathematics at the Faculty of Mathematics and Physics, Charles University. Last semester, I had the opportunity to study at the Technical University of Munich as part of the Erasmus programme. Alongside my studies, I work part-time at Roklen, where I'm involved in an algorithmic trading project.</p>
+                    <p>Outside of work and university, you'll usually find me playing the guitar, hiking, swimming, or occasionally hitchhiking.</p>
                 </div>
-                <div class="intro-card">
-                    <div class="intro-icon">👨‍💻</div>
-                    <h3>Programming & Data</h3>
-                    <p>Writing Python code, data analysis</p>
-                </div>
-                <div class="intro-card">
-                    <div class="intro-icon">🎸</div>
-                    <h3>Guitar & Hiking</h3>
-                    <p>Playing guitar and (hitch)hiking for fun</p>
-                </div>
-                <div class="intro-card">
-                    <div class="intro-icon">🧊</div>
-                    <h3>3D Printing</h3>
-                    <p>Exploring the world of 3D modeling and printing</p>
-                </div>
-                <div class="intro-card">
-                    <div class="intro-icon">🎲</div>
-                    <h3>Gaming & Friends</h3>
-                    <p>From PC games to board games, primarily as a social event</p>
-                </div>
-                <div class="intro-card">
-                    <div class="intro-icon">📚</div>
-                    <h3>Teaching & Learning</h3>
-                    <p>Tutoring younger students in physics, math, chemistry and Czech</p>
-                </div>
-            </div>
-        </section>
+            </section>
+
+            <section class="contact-block" id="contact" data-reveal>
+                <p class="eyebrow">Contact</p>
+                <ul class="link-list">
+                    <li>
+                        <strong>Email</strong>
+                        <a href="mailto:maxamarek1@gmail.com">maxamarek1@gmail.com</a>
+                    </li>
+                    <li>
+                        <strong>LinkedIn</strong>
+                        <a href="https://www.linkedin.com/in/mmaxa/" target="_blank" rel="noopener noreferrer">mmaxa</a>
+                    </li>
+                    <li>
+                        <strong>GitHub</strong>
+                        <a href="https://github.com/marek-maxa" target="_blank" rel="noopener noreferrer">marek-maxa</a>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="friends-block" id="friends" data-reveal>
+                <p class="eyebrow">Friends</p>
+                <ul class="link-list">
+                    <li>
+                        <strong>Vojtech Votruba</strong>
+                        <a href="https://vojtech-votruba.github.io/" target="_blank" rel="noopener noreferrer">vojtech-votruba.github.io</a>
+                    </li>
+                    <li>
+                        <strong>Lukas Vesrkna</strong>
+                        <a href="https://lesves.github.io/" target="_blank" rel="noopener noreferrer">lesves.github.io</a>
+                    </li>
+                </ul>
+            </section>
+        </div>
     </main>
+
     <div id="footer"></div>
     <script src="scripts/components.js"></script>
 </body>

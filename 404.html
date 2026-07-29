@@ -1,21 +1,29 @@
 <!DOCTYPE html>
-<html lang="cs">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page not found</title>
-    <script src="/scripts/darkmode.js"></script>
-    <link rel="stylesheet" href="/assets/styles.css">
-    <link rel="icon" href="/assets/venus.ico" type="image/x-icon">
+    <title>Page Not Found | Marek Maxa</title>
+    <script src="scripts/darkmode.js"></script>
+    <link rel="stylesheet" href="assets/styles.css">
+    <link rel="icon" href="assets/venus.ico" type="image/x-icon">
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
     <div id="navbar"></div>
-    <main>
-        <h1>404 – Page not found</h1>
-        <p>Sorry, but this page does not exist.</p>
-        <a href="/">Back to the main page</a>
+
+    <main id="main-content">
+        <div class="page-shell moved-page stack">
+            <section data-reveal>
+                <p class="eyebrow">404</p>
+                <h1>404</h1>
+                <p class="lead">The page you are looking for does not exist or has moved.</p>
+                <a class="btn btn-primary" href="/">Return to home</a>
+            </section>
+        </div>
     </main>
+
     <div id="footer"></div>
-    <script src="/scripts/components.js"></script>
+    <script src="scripts/components.js"></script>
 </body>
 </html>
