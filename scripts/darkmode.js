@@ -37,6 +37,23 @@
         toggleElement.dataset.theme = theme;
     };
 
+    const prefersReducedMotion = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const applyThemeFromToggle = (toggleElement) => {
+        const nextTheme = window.getTheme() === THEMES.dark ? THEMES.light : THEMES.dark;
+        const updateTheme = () => {
+            const theme = applyTheme(nextTheme);
+            updateToggleText(toggleElement, theme);
+        };
+
+        if (typeof document.startViewTransition === "function" && !prefersReducedMotion()) {
+            document.startViewTransition(updateTheme);
+            return;
+        }
+
+        updateTheme();
+    };
+
     const initialTheme = applyTheme(getInitialTheme());
 
     window.setTheme = (theme) => applyTheme(theme);
@@ -51,9 +68,6 @@
 
         updateToggleText(toggle, window.getTheme());
 
-        toggle.addEventListener("click", () => {
-            const theme = window.toggleTheme();
-            updateToggleText(toggle, theme);
-        });
+        toggle.addEventListener("click", () => applyThemeFromToggle(toggle));
     };
 })();

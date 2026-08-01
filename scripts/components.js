@@ -9,7 +9,7 @@ const resolveComponentUrl = (fileName) => {
 
 const loadComponent = async (targetId, fileName) => {
     const target = document.getElementById(targetId);
-    if (!target) {
+    if (!target || target.childElementCount > 0) {
         return;
     }
 
@@ -48,28 +48,6 @@ const initActivePageHighlighting = () => {
     });
 };
 
-const initSmoothScrolling = () => {
-    document.addEventListener("click", (event) => {
-        const link = event.target.closest('a[href^="#"]');
-        if (!link) {
-            return;
-        }
-
-        const targetId = link.getAttribute("href");
-        if (!targetId || targetId === "#") {
-            return;
-        }
-
-        const targetElement = document.querySelector(targetId);
-        if (!targetElement) {
-            return;
-        }
-
-        event.preventDefault();
-        targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
-    });
-};
-
 const initScrollToTop = () => {
     if (document.querySelector(".scroll-to-top")) {
         return;
@@ -91,35 +69,9 @@ const initScrollToTop = () => {
     onScroll();
 
     scrollButton.addEventListener("click", () => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        const behavior = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
+        window.scrollTo({ top: 0, behavior });
     });
-};
-
-const initRevealAnimation = () => {
-    const revealElements = document.querySelectorAll("[data-reveal]");
-    if (revealElements.length === 0) {
-        return;
-    }
-
-    if (!("IntersectionObserver" in window)) {
-        revealElements.forEach((element) => element.classList.add("is-visible"));
-        return;
-    }
-
-    const observer = new IntersectionObserver(
-        (entries, instance) => {
-            entries.forEach((entry) => {
-                if (!entry.isIntersecting) {
-                    return;
-                }
-                entry.target.classList.add("is-visible");
-                instance.unobserve(entry.target);
-            });
-        },
-        { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
-    );
-
-    revealElements.forEach((element) => observer.observe(element));
 };
 
 const updateFooterYear = () => {
@@ -135,13 +87,12 @@ window.addEventListener("DOMContentLoaded", async () => {
     if (typeof window.initDarkmode === "function") {
         window.initDarkmode();
     }
-    if (typeof window.initProjects === "function") {
-        await window.initProjects();
-    }
+
+    const projectInitialization = typeof window.initProjects === "function" ? window.initProjects() : Promise.resolve();
 
     initActivePageHighlighting();
-    initSmoothScrolling();
     initScrollToTop();
-    initRevealAnimation();
     updateFooterYear();
+
+    await projectInitialization;
 });

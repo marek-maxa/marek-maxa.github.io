@@ -322,13 +322,11 @@
         return document;
     };
 
-    const renderProjectList = async (container) => {
-        const projectDocuments = await Promise.all(getProjects().map((project) => loadProjectDocument(project)));
-
-        container.innerHTML = projectDocuments
+    const renderProjectList = (container) => {
+        container.innerHTML = getProjects()
             .map(
                 (project) => `
-                    <article class="project-index-item" data-reveal>
+                    <article class="project-index-item">
                         <h2>${escapeHtml(project.title || project.slug)}</h2>
                         <p class="project-index-summary">${escapeHtml(project.summary || "")}</p>
                         <a class="project-index-link" href="/pages/projects/${escapeHtml(project.slug)}.html">Read project note</a>
@@ -343,7 +341,7 @@
 
         if (!projectEntry) {
             container.innerHTML = `
-                <article class="stack" data-reveal>
+                <article class="stack">
                     <h1>Project not found</h1>
                     <p class="subtle">The requested project does not exist in <code>scripts/projects-data.js</code>.</p>
                     <a class="btn btn-primary" href="/pages/projects.html">Back to projects</a>
@@ -352,33 +350,43 @@
             return;
         }
 
-        const project = await loadProjectDocument(projectEntry);
-        const sections = splitMarkdownSections(project.body);
-
         container.innerHTML = `
-            <article class="article-body" data-reveal>
-                <header class="article-header">
-                    <a class="inline-link" href="/pages/projects.html">Back to projects</a>
-                    <h1>${escapeHtml(project.title || project.slug)}</h1>
-                    ${renderHeaderMeta(project)}
-                </header>
-                ${sections
-                    .map(
-                        (section) => `
-                            <section class="article-section">
-                                ${section.title ? `<h2>${escapeHtml(section.title)}</h2>` : ""}
-                                ${renderMarkdownBody(section.content, project.fileUrl)}
-                            </section>
-                        `
-                    )
-                    .join("")}
+            <article class="article-body">
+                ${renderProjectHeader(projectEntry)}
+                <div class="project-content" data-project-content aria-busy="true"></div>
             </article>
         `;
+
+        const project = await loadProjectDocument(projectEntry);
+        const sections = splitMarkdownSections(project.body);
+        const article = container.querySelector(".article-body");
+        const projectContent = container.querySelector("[data-project-content]");
+
+        article.querySelector(".article-header").outerHTML = renderProjectHeader(project);
+        projectContent.innerHTML = sections
+            .map(
+                (section) => `
+                    <section class="article-section">
+                        ${section.title ? `<h2>${escapeHtml(section.title)}</h2>` : ""}
+                        ${renderMarkdownBody(section.content, project.fileUrl)}
+                    </section>
+                `
+            )
+            .join("");
+        projectContent.removeAttribute("aria-busy");
 
         if (window.MathJax?.typesetPromise) {
             window.MathJax.typesetPromise([container]).catch((error) => console.error(error));
         }
     };
+
+    const renderProjectHeader = (project) => `
+        <header class="article-header">
+            <a class="inline-link" href="/pages/projects.html">Back to projects</a>
+            <h1>${escapeHtml(project.title || project.slug)}</h1>
+            ${renderHeaderMeta(project)}
+        </header>
+    `;
 
     const renderHeaderMeta = (project) => {
         const items = [];
@@ -403,7 +411,7 @@
     window.initProjects = async () => {
         const listNode = document.querySelector("[data-project-list]");
         if (listNode) {
-            await renderProjectList(listNode);
+            renderProjectList(listNode);
         }
 
         const detailNode = document.querySelector("[data-project-slug]");

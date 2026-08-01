@@ -49,6 +49,7 @@ html[data-theme="light"] {
 
 html {
     scroll-behavior: smooth;
+    background-color: var(--bg);
 }
 
 *,
@@ -66,7 +67,29 @@ body {
     background:
         linear-gradient(180deg, color-mix(in srgb, var(--accent-soft), transparent 30%) 0%, transparent 12rem),
         var(--bg);
-    transition: background var(--transition-base), color var(--transition-base);
+}
+
+/*
+ * Use one restrained transition for both document navigation and theme changes.
+ * The old page remains fully painted underneath the new one, so there is never
+ * a blank frame between them. Browsers without View Transitions ignore this.
+ */
+@view-transition {
+    navigation: auto;
+}
+
+::view-transition-old(root) {
+    animation: none;
+}
+
+::view-transition-new(root) {
+    animation: page-fade-in 180ms ease-out both;
+}
+
+@keyframes page-fade-in {
+    from {
+        opacity: 0;
+    }
 }
 
 a {
@@ -169,13 +192,12 @@ main {
     font-size: 0.92rem;
     font-weight: 700;
     cursor: pointer;
-    transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+    transition: background var(--transition-fast), border-color var(--transition-fast);
 }
 
 #theme-toggle:hover {
     background: var(--accent-soft);
     border-color: var(--line-strong);
-    transform: translateY(-1px);
 }
 
 main {
@@ -268,11 +290,7 @@ ol {
     border-radius: var(--radius-round);
     text-decoration: none;
     font-weight: 700;
-    transition: transform var(--transition-fast), background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
-}
-
-.btn:hover {
-    transform: translateY(-1px);
+    transition: background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
 }
 
 .btn-primary {
@@ -442,6 +460,12 @@ ol {
     gap: var(--space-6);
 }
 
+.project-content {
+    min-height: 4rem;
+    display: grid;
+    gap: var(--space-6);
+}
+
 .article-header {
     padding-bottom: var(--space-5);
     border-bottom: 1px solid var(--line);
@@ -600,14 +624,12 @@ code {
     cursor: pointer;
     opacity: 0;
     visibility: hidden;
-    transform: translateY(10px);
-    transition: opacity var(--transition-fast), visibility var(--transition-fast), transform var(--transition-fast), background var(--transition-fast);
+    transition: opacity var(--transition-fast), visibility var(--transition-fast), background var(--transition-fast);
 }
 
 .scroll-to-top.visible {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0);
 }
 
 .scroll-to-top:hover {
@@ -648,17 +670,6 @@ footer {
 
 .social-links a:hover {
     color: var(--accent);
-}
-
-[data-reveal] {
-    opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 320ms ease, transform 320ms ease;
-}
-
-[data-reveal].is-visible {
-    opacity: 1;
-    transform: translateY(0);
 }
 
 .btn:focus,
@@ -715,6 +726,10 @@ a:focus,
 }
 
 @media (prefers-reduced-motion: reduce) {
+    @view-transition {
+        navigation: none;
+    }
+
     *,
     *::before,
     *::after {
@@ -722,5 +737,10 @@ a:focus,
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
+    }
+
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+        animation: none !important;
     }
 }

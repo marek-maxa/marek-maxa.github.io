@@ -5,18 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projects | Marek Maxa</title>
     <script src="../scripts/darkmode.js"></script>
-    <script src="../scripts/projects-data.js"></script>
-    <script src="../scripts/projects.js"></script>
     <link rel="stylesheet" href="../assets/styles.css">
+    <script defer src="../scripts/projects-data.js"></script>
+    <script defer src="../scripts/projects.js"></script>
     <link rel="icon" href="../assets/venus.ico" type="image/x-icon">
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to content</a>
-    <div id="navbar"></div>
+    <div id="navbar">
+        <nav class="navbar" aria-label="Main navigation">
+            <div class="navbar-container">
+                <a class="navbar-title" href="/">Marek Maxa</a>
+                <ul class="navbar-links">
+                    <li><a href="/pages/projects.html" aria-current="page">Projects</a></li>
+                </ul>
+                <button id="theme-toggle" type="button">Theme</button>
+            </div>
+        </nav>
+    </div>
 
     <main id="main-content">
         <div class="page-shell editorial-shell stack">
-            <section data-reveal>
+            <section>
                 <p class="eyebrow">Projects</p>
                 <h1>Projects</h1>
                 <p class="lead">A simple overview of current projects.</p>
@@ -26,7 +36,18 @@
         </div>
     </main>
 
-    <div id="footer"></div>
+    <div id="footer">
+        <footer>
+            <div class="footer-content">
+                <p>&copy; <span id="copyright-year">2026</span> Marek Maxa</p>
+                <ul class="social-links">
+                    <li><a href="mailto:maxamarek1@gmail.com">Email</a></li>
+                    <li><a href="https://github.com/marek-maxa" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+                    <li><a href="https://www.linkedin.com/in/marek-maxa-56b01a36a/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+                </ul>
+            </div>
+        </footer>
+    </div>
     <script src="../scripts/components.js"></script>
 </body>
 </html>
